@@ -35528,8 +35528,7 @@
                                             };
                                         })(this),
                                         2e3
-                                    )
-                                    : setTimeout(
+                                    ): setTimeout(
                                         (function (t) {
                                             return function () {
                                                 return (
@@ -35546,25 +35545,7 @@
                                             };
                                         })(this),
                                         2e3
-                                    ))
-                            : setTimeout(
-                                (function (t) {
-                                    return function () {
-                                        return (
-                                            t.getInstructor().setCharacter(t.team.hue),
-                                            t
-                                                .getInstructor()
-                                                .say(
-                                                    "Tough times, we are short of secondary weapons, you cannot buy any. Healing is disabled. Also we had to rehabilitate a few old ships.\nGood Luck Commander."
-                                                ),
-                                            setTimeout(function () {
-                                                return t.getInstructor().disappear();
-                                            }, 1e4)
-                                        );
-                                    };
-                                })(this),
-                                2e3
-                            ),
+                                    )):
                         this.II1lO.IOl0I.respawn(),
                         this.II1lO.display.hideCursor(),
                         setTimeout(
