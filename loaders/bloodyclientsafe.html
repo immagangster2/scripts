@@ -383,6 +383,7 @@
         overflow: hidden;
         font-family: Play, Verdana;
         transform: rotate("90deg");
+        cursor: url('https://starblast.data.neuronality.com/cursor/sbcursor32.png') 0 0,auto !important
       }
       .noselect {
         -webkit-touch-callout: none;
@@ -756,12 +757,11 @@
         border: 0 solid hsl(24, 90%, 10%);
         width: 415px;
         max-width: 80%;
-        color: #eee;
+        color: #f9ffcce6;
         outline: 0;
         background: transparent;
         transition: all 0.5s ease;
-        text-shadow: 0 0 7px #ff5000;
-        color: hsla(200, 90%, 90%, 0.8);
+        text-shadow: #ff0000 0px 0px 7px
       }
       .stats input,
       .ecpinput {
@@ -48077,12 +48077,7 @@
                                     t +
                                     ",70%,60%) 0%,hsl(" +
                                     t +
-                                    ",70%,40%) 100%)"),
-                                (document.querySelector("#player input").style.color =
-                                    "hsla(" + t + ",100%,90%,.9)"),
-                                (document.querySelector("#player input").style[
-                                    "text-shadow"
-                                ] = "0 0 7px hsla(" + t + ",80%,80%,1)");
+                                    ",70%,40%) 100%)")
                         } else e.classList.remove("selected");
                 }),
                 (e.prototype.copyRoomLink = function () {
