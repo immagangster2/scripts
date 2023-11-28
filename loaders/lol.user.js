@@ -412,7 +412,7 @@ function injectLoader() {
     xhr.send();
 }
 setTimeout(injectLoader, 1000);
-/*(async () => {
+(async () => {
     log("Checking for Updates...");
 
     let shouldReload = false;
@@ -442,4 +442,4 @@ setTimeout(injectLoader, 1000);
             location.reload();
         }, 5000);
     }
-})();*/
+})();
