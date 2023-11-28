@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client Cheats
-// @version      0.0.1
+// @version      0.0.2
 // @description  Troll Client with cheats
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,8 @@
 // @updateURL    https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // @downloadURL  https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "0.0.1";
+alert('WARNING: You will be blamed for using this Client.')
+const CURRENT_RUNNING_VERSION = "0.0.2";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
