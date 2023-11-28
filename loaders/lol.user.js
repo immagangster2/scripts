@@ -7,8 +7,8 @@
 // @match        https://starblast.io/
 // @run-at       document-end
 // @grant        GM_xmlhttpRequest
-// @updateURL    https://officialtroller.github.io/ecp-generator/js/surv.user.js
-// @downloadURL  https://officialtroller.github.io/ecp-generator/js/surv.user.js
+// @updateURL    https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
+// @downloadURL  https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // ==/UserScript==
 const CURRENT_RUNNING_VERSION = "0.0.1";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
@@ -419,14 +419,14 @@ setTimeout(injectLoader, 1000);
 
     GM.xmlHttpRequest({
         method: "GET",
-        url: "https://officialtroller.github.io/ecp-generator/js/surv.user.js",
+        url: "https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js",
         responseType: "text",
         onload: function (response) {
             const remoteScriptText = response.responseText;
             const remoteMatch = remoteScriptText.match(/@version\s+(\S+)/i);
             if (remoteMatch && remoteMatch[1] && remoteMatch[1] !== CURRENT_RUNNING_VERSION) {
                 updatelog(`New version available: ${remoteMatch[1]}`);
-                window.location.href = "https://officialtroller.github.io/ecp-generator/js/surv.user.js";
+                window.location.href = "https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js";
                 shouldReload = true;
             } else {
                 updtaelog('Script is up to date');
