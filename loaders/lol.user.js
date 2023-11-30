@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Troll Client
+// @name         Troll Client CH
 // @version      0.1.0
 // @description  Troll Client
 // @author       official_troller
