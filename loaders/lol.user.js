@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client CH
-// @version      0.1.0
+// @version      0.1.1
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // @downloadURL  https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "0.1.0";
+const CURRENT_RUNNING_VERSION = "0.1.1";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -84,7 +84,7 @@ function injectLoader() {
             }
             modifyVocabulary("TutorialMode", '{text:"Nigger",icon:"®",key:"I"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"Me",icon:"?",key:"E"},{text:"You",icon:">",key:"D"},{text:"IM a Loser",icon:" ",key:"V"}');
             modifyVocabulary("SurvivalMode", '{text:"Nigger",icon:"®",key:"I"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"Me",icon:"?",key:"E"},{text:"You",icon:">",key:"D"},{text:"IM a Loser",icon:" ",key:"V"}');
-            modifyVocabulary("TeamMode", '{text:"Nigger",icon:"®",key:"I"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"contribute",icon:"°",key:"L"},{text:"Hello",icon:":",key:"W"},{ text: "Bye", icon: "F", key: "H" }');
+            modifyVocabulary("TeamMode", '{text:"Nigger",icon:"®",key:"I"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"contribute",icon:"°",key:"L"},{ text: "Bye", icon: "F", key: "H" }');
             modifyVocabulary("InvasionMode", '{text:"Nigger",icon:"®",key:"T"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"Alien",icon:"0",key:"W"},{text:"Boss",icon:"¿",key:"V"}');
             modifyVocabulary("DeathMatchMode", '{text:"Good Game",icon:"GG",key:"G"}');
             modifyVocabulary("BattleRoyaleMode", '{text:"Good Game",icon:"GG",key:"G"}');
@@ -142,18 +142,21 @@ function injectLoader() {
             const blurdes = localStorage.getItem("blurdes");
             const stationisten = localStorage.getItem("stationisten");
             const weaponisten = localStorage.getItem("weaponisten");
+            const rabasom = localStorage.getItem("rabasom");
+            const faborn = localStorage.getItem("faborn");
+            const webonore = localStorage.getItem("webonore");
             //main settings
             starSRC = starSRC.replace(/"fullcolor"===this\.custom\.finish&&(this\.custom\.finish="alloy"),/, '');
             if (weaponisten) {
                 let script = document.createElement("script");
-                script.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/customweaponmod.js";
+                script.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/weaponmodels.user.js";
                 document.body.appendChild(script);
                 modlog(`Custom Weapons added`);
             }
 
             if (stationisten) {
                 let sbibt = document.createElement("script");
-                sbibt.src = "https://cdn.jsdelivr.net/gh/bhpsngum/starblast-snippets@latest/CustomStationModuleModels/loader.user.js";
+                sbibt.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/stationmodels.user.js";
                 document.body.appendChild(sbibt);
                 modlog(`Custom Bases added`);
             }
@@ -193,6 +196,22 @@ function injectLoader() {
             if (blurdes === "true") {
                 starSRC = starSRC.replace(/(r\.addEventListener\("click",function\(\)\{)(if\(a\|\|i\.featured\))(.+?)(t\.closeModal\(\),t\.startModdingMode\(i\)\}\))/, '$1document.querySelector("#blur").remove();$2$3$4');
                 modlog(`Blur Added`);
+            }
+
+            if (rabasom === "true") {
+                starSRC = starSRC.replace(/this\.radar_zoom=([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:[eE]([+-]?\d+))?/g, 'this.radar_zoom=1');
+                modlog('Radar upgraded');
+            }
+
+            if (faborn === "true") {
+                starSRC = starSRC.replace(/respawn_delay=([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:[eE]([+-]?\d+))?/g, 'respawn_delay=1');
+                starSRC = starSRC.replace(/<span id="menucountdown"><\/span>\s*\(<span id="menucountdown"><\/span>\)\s*/, '');
+                modlog('Radar upgraded');
+            }
+
+            if (webonore === "true") {
+                starSRC = starSRC.replace(/!this\.[iI10OlL]{3,6}\.mode\.restricted_weapons_store/g, "1");
+                modlog('Weapon Store added');
             }
             var regex = /var\s+x\s*=\s*document\.querySelector\(".training"\),/;
             starSRC = starSRC.replace(regex, '');
