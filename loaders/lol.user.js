@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client CH
-// @version      0.1.1
+// @version      0.1.2
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // @downloadURL  https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "0.1.1";
+const CURRENT_RUNNING_VERSION = "0.1.2";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -127,7 +127,7 @@ function injectLoader() {
             modlog("Badges added");
             //Client Settings
             let scibidy = document.createElement("script");
-            scibidy.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/settingstaba.js";
+            scibidy.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/settingstabe.js";
             document.body.appendChild(scibidy);
             //Badge Manager
             let sibiti = document.createElement("script");
