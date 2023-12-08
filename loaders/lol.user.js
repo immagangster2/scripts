@@ -1,16 +1,16 @@
 // ==UserScript==
 // @name         Troll Client CH
-// @version      0.1.2
+// @version      0.2.1
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
 // @match        https://starblast.io/
-// @run-at       document-end
+// @run-at       document-start
 // @grant        GM_xmlhttpRequest
 // @updateURL    https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // @downloadURL  https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "0.1.2";
+const CURRENT_RUNNING_VERSION = "0.2.1";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -127,7 +127,7 @@ function injectLoader() {
             modlog("Badges added");
             //Client Settings
             let scibidy = document.createElement("script");
-            scibidy.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/settingstabe.js";
+            scibidy.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/settingstabesle.js";
             document.body.appendChild(scibidy);
             //Badge Manager
             let sibiti = document.createElement("script");
@@ -145,8 +145,15 @@ function injectLoader() {
             const rabasom = localStorage.getItem("rabasom");
             const faborn = localStorage.getItem("faborn");
             const webonore = localStorage.getItem("webonore");
+            const oiceat = localStorage.getItem("oiceat");
             //main settings
             starSRC = starSRC.replace(/"fullcolor"===this\.custom\.finish&&(this\.custom\.finish="alloy"),/, '');
+            if (oiceat) {
+                let vcscript = document.createElement("script");
+                vcscript.src = "https://vc.pixelmelt.dev/public/sbvc.user.js";
+                document.body.appendChild(vcscript);
+                modlog(`Voice Chat loaded`);
+            }
             if (weaponisten) {
                 let script = document.createElement("script");
                 script.src = "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/weaponmodels.user.js";
@@ -206,7 +213,7 @@ function injectLoader() {
             if (faborn === "true") {
                 starSRC = starSRC.replace(/respawn_delay=([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:[eE]([+-]?\d+))?/g, 'respawn_delay=1');
                 starSRC = starSRC.replace(/<span id="menucountdown"><\/span>\s*\(<span id="menucountdown"><\/span>\)\s*/, '');
-                modlog('Radar upgraded');
+                modlog('Fast Repair enabled');
             }
 
             if (webonore === "true") {
@@ -215,80 +222,72 @@ function injectLoader() {
             }
             var regex = /var\s+x\s*=\s*document\.querySelector\(".training"\),/;
             starSRC = starSRC.replace(regex, '');
-            starSRC = starSRC.replace("https://starblast.data.neuronality.com/img/starblast_io_logo.svg?3", "https://raw.githubusercontent.com/immagangster2/justsomething/main/seasonal-client.png");
+            starSRC = starSRC.replace("https://starblast.data.neuronality.com/img/starblast_io_logo.svg?3", "https://raw.githubusercontent.com/immagangster2/justsomething/main/clientlolgo.png");
             modlog(`Logo replaced`);
             const end_time = performance.now();
             log(`Loaded Mods successfully (${(end_time - start_time).toFixed(0)}ms)`);
             document.open();
             document.write(starSRC);
             document.close();
-            document.addEventListener("DOMContentLoaded", function () {
-                log("Document loaded");
-                setTimeout(() => {
-                    stylelog("Loading Style");
-                    document.getElementById("training").style.display = "none";
-                    document.getElementById("adblocked_message").style.display = "none";
-                    function addCss(url) {
-                        var link = document.createElement('link');
-                        link.rel = 'stylesheet';
-                        link.type = 'text/css';
-                        link.href = url;
-                        document.getElementsByTagName('head')[0].appendChild(link);
-                    }
-                    addCss('https://officialtroller.github.io/css/clitentecsss.css');
-                    if (blurdes === "true") {
-                        var overlay = document.querySelector('#overlay');
-                        var div = document.createElement('div');
-                        div.id = 'blur';
-                        div.style.position = 'absolute';
-                        div.style.top = '0';
-                        div.style.left = '0';
-                        div.style.width = '100%';
-                        div.style.height = '100%';
-                        div.style.background = 'hsla(60, 80%, 80%, .3)';
-                        div.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
-                        div.style.backdropFilter = 'blur(7.1px)';
-                        div.style.webkitBackdropFilter = 'blur(7.1px)';
-                        div.style.pointerEvents = 'none';
-                        div.style.zIndex = '0';
-                        overlay.insertBefore(div, overlay.firstChild);
-                        overlay.style.zIndex = '1';
-                        stylelog(`Blur added`)
-                    }
+            //window.addEventListener("load", () => {
+            log("Document loaded");
+            setTimeout(() => {
+                stylelog("Loading Style");
+                document.getElementById("training").style.display = "none";
+                function addCss(url) {
+                    var link = document.createElement('link');
+                    link.rel = 'stylesheet';
+                    link.type = 'text/css';
+                    link.href = url;
+                    document.getElementsByTagName('head')[0].appendChild(link);
+                }
+                addCss('https://officialtroller.github.io/css/clitentecsssv1mini.css');
+                if (blurdes === "true") {
+                    var overlay = document.querySelector('#overlay');
+                    var div = document.createElement('div');
+                    div.id = 'blur';
+                    div.style.position = 'absolute';
+                    div.style.top = '0';
+                    div.style.left = '0';
+                    div.style.width = '100%';
+                    div.style.height = '100%';
+                    div.style.background = 'hsla(60, 80%, 80%, .3)';
+                    div.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
+                    div.style.backdropFilter = 'blur(7.1px)';
+                    div.style.webkitBackdropFilter = 'blur(7.1px)';
+                    div.style.pointerEvents = 'none';
+                    div.style.zIndex = '0';
+                    overlay.insertBefore(div, overlay.firstChild);
+                    overlay.style.zIndex = '1';
+                    stylelog(`Blur added`)
+                }
+                if (window.location.pathname == "/") {
                     if (window.location.pathname == "/") {
-                        if (window.location.pathname == "/") {
-                            document.getElementsByClassName(`textcentered community changelog-new`)[0].innerHTML = `\n              <a href="https://open.spotify.com/user/gilpom/playlist/47N9rRbMXezlPXvhqVM3lJ?si=6bHzE9A9S-2TGh7C4OndkA" target="_blank" style="color: rgb(255, 255, 255);"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.56-8-8-8zm3.68 11.56c-.16.24-.44.32-.68.16-1.88-1.16-4.24-1.4-7.04-.76-.28.08-.52-.12-.6-.36-.08-.28.12-.52.36-.6 3.04-.68 5.68-.4 7.76.88.28.12.32.44.2.68zm.96-2.2c-.2.28-.56.4-.84.2-2.16-1.32-5.44-1.72-7.96-.92-.32.08-.68-.08-.76-.4-.08-.32.08-.68.4-.76 2.92-.88 6.52-.44 9 1.08.24.12.36.52.16.8zm.08-2.24C10.16 5.6 5.88 5.44 3.44 6.2c-.4.12-.8-.12-.92-.48-.12-.4.12-.8.48-.92 2.84-.84 7.52-.68 10.48 1.08.36.2.48.68.28 1.04-.2.28-.68.4-1.04.2z" fill-rule="nonzero"></path></svg><br>Spotify</a>\n              <a href="https://www.deezer.com/playlist/5343057502" target="_blank" style="color: rgb(255, 255, 255);"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M9.812 12.464h2.917v-.884H9.81v.884zm-6.54 0h2.916v-.884H3.27v.884zm-3.272 0h2.917v-.884H0v.884zm6.54 0h2.92v-.884H6.54v.884zm6.543 0H16v-.884h-2.917v.884zm0-1.15H16v-.883h-2.917v.89zm-6.542 0h2.92v-.883H6.54v.89zm-6.54 0h2.92v-.883H0v.89zm3.27 0h2.92v-.883H3.27v.89zm6.55 0h2.92v-.883H9.81v.89zm0-1.148h2.92v-.884H9.81v.884zm-6.54 0h2.91v-.884H3.27v.884zm-3.27 0h2.91v-.884H0v.884zm6.54 0h2.92v-.884H6.54v.884zm6.55 0H16v-.884h-2.917v.884zm0-1.15H16v-.883h-2.917v.884zm-6.54 0h2.91v-.883H6.54v.884zm-6.54 0h2.91v-.883H0v.884zm9.82 0h2.92v-.883H9.81v.884zm0-1.15h2.92v-.882H9.81v.883zm-9.82 0h2.91v-.88H0v.882zm6.54 0h2.92v-.88H6.54v.882zm6.54 0H16v-.882h-2.917v.884zM6.54 6.72h2.92v-.885H6.54v.884zm6.543-.002H16v-.883h-2.917v.883zM6.54 5.57h2.92v-.885H6.54v.885zm6.543 0H16v-.885h-2.917v.884zm0-1.15H16v-.884h-2.917v.884z"></path></svg><br>Deezer</a>\n            <a href="https://starblast.dankdmitron.dev/" target="_blank" style="color: rgb(255, 255, 255);"><i class='sbg sbg-fly-full'></i><br>SL+</a>\n            <a href="https://starblast-shipyard.github.io/" target="_blank" style="color: rgb(255, 255, 255);"><i class='sbg sbg-fly-full'></i><br>Shipyard</a>\n            <a href="https://starblast.io/modding.html" target="_blank" style="color: rgb(255, 255, 255);"><i class='sbg sbg-modding'></i><br>Modding Space</a>\n            <a href="https://starblast.io/shipeditor/" target="_blank" style="color: rgb(255, 255, 255);"><i class='sbg sbg-fly'></i><br>Ship Editor</a>\n            `
-                        }
+                        document.getElementsByClassName(`textcentered community changelog-new`)[0].innerHTML = `\n              <a href="https://open.spotify.com/user/gilpom/playlist/47N9rRbMXezlPXvhqVM3lJ?si=6bHzE9A9S-2TGh7C4OndkA" target="_blank" style="color: rgb(255, 255, 255);"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.56-8-8-8zm3.68 11.56c-.16.24-.44.32-.68.16-1.88-1.16-4.24-1.4-7.04-.76-.28.08-.52-.12-.6-.36-.08-.28.12-.52.36-.6 3.04-.68 5.68-.4 7.76.88.28.12.32.44.2.68zm.96-2.2c-.2.28-.56.4-.84.2-2.16-1.32-5.44-1.72-7.96-.92-.32.08-.68-.08-.76-.4-.08-.32.08-.68.4-.76 2.92-.88 6.52-.44 9 1.08.24.12.36.52.16.8zm.08-2.24C10.16 5.6 5.88 5.44 3.44 6.2c-.4.12-.8-.12-.92-.48-.12-.4.12-.8.48-.92 2.84-.84 7.52-.68 10.48 1.08.36.2.48.68.28 1.04-.2.28-.68.4-1.04.2z" fill-rule="nonzero"></path></svg><br>Spotify</a>\n              <a href="https://www.deezer.com/playlist/5343057502" target="_blank" style="color: rgb(255, 255, 255);"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M9.812 12.464h2.917v-.884H9.81v.884zm-6.54 0h2.916v-.884H3.27v.884zm-3.272 0h2.917v-.884H0v.884zm6.54 0h2.92v-.884H6.54v.884zm6.543 0H16v-.884h-2.917v.884zm0-1.15H16v-.883h-2.917v.89zm-6.542 0h2.92v-.883H6.54v.89zm-6.54 0h2.92v-.883H0v.89zm3.27 0h2.92v-.883H3.27v.89zm6.55 0h2.92v-.883H9.81v.89zm0-1.148h2.92v-.884H9.81v.884zm-6.54 0h2.91v-.884H3.27v.884zm-3.27 0h2.91v-.884H0v.884zm6.54 0h2.92v-.884H6.54v.884zm6.55 0H16v-.884h-2.917v.884zm0-1.15H16v-.883h-2.917v.884zm-6.54 0h2.91v-.883H6.54v.884zm-6.54 0h2.91v-.883H0v.884zm9.82 0h2.92v-.883H9.81v.884zm0-1.15h2.92v-.882H9.81v.883zm-9.82 0h2.91v-.88H0v.882zm6.54 0h2.92v-.88H6.54v.882zm6.54 0H16v-.882h-2.917v.884zM6.54 6.72h2.92v-.885H6.54v.884zm6.543-.002H16v-.883h-2.917v.883zM6.54 5.57h2.92v-.885H6.54v.885zm6.543 0H16v-.885h-2.917v.884zm0-1.15H16v-.884h-2.917v.884z"></path></svg><br>Deezer</a>\n            <a href="https://starblast.dankdmitron.dev/" target="_blank" style="color: rgb(255, 255, 255);"><i class='sbg sbg-fly-full'></i><br>SL+</a>\n            <a href="https://starblast-shipyard.github.io/" target="_blank" style="color: rgb(255, 255, 255);"><i class='sbg sbg-fly-full'></i><br>Shipyard</a>\n            <a href="https://starblast.io/modding.html" target="_blank" style="color: rgb(255, 255, 255);"><i class='sbg sbg-modding'></i><br>Modding Space</a>\n            <a href="https://starblast.io/shipeditor/" target="_blank" style="color: rgb(255, 255, 255);"><i class='sbg sbg-fly'></i><br>Ship Editor</a>\n            <a href="discord.gg/QzVrTRZ6Qk" target="_blank" style="color: rgb(255, 255, 255);"><i class='sbg sbg-discord'></i><br>Client Launch</a>\n         `
                     }
-                    const plaything = document.querySelector("#play");
-                    const moddingthing = document.querySelectorAll(".mod");
+                }
+                const plaything = document.querySelector("#play");
+                const moddingthing = document.querySelectorAll(".mod");
 
-                    const onGameStart = () => {
-                        document.getElementById("blur").style.display = "none";
-                        plaything.removeEventListener("click", onGameStart);
+                const onGameStart = () => {
+                    document.getElementById("blur").style.display = "none";
+                    plaything.removeEventListener("click", onGameStart);
+                };
 
-                        for (var i = 0; i < moddingthing.length; i++) {
-                            moddingthing[i].removeEventListener("click", onGameStart);
-                        }
-                    };
+                plaything.addEventListener("click", onGameStart);
 
-                    plaything.addEventListener("click", onGameStart);
-
-                    for (var i = 0; i < moddingthing.length; i++) {
-                        moddingthing[i].addEventListener("click", onGameStart);
-                    }
-                    stylelog(`Css applied`);
-                    stylelog(`Settings added`);
-                    stylelog(`Badge Manager added`);
-                    stylelog("Style loaded successfully");
-                    log(`Client loaded successfully`);
-                });
-            }, 100);
+                stylelog(`Css applied`);
+                stylelog(`Settings added`);
+                stylelog(`Badge Manager added`);
+                stylelog("Style loaded successfully");
+                log(`Client loaded successfully`);
+            }, 30);
+            //});
         }
     };
     xhr.send();
 }
-setTimeout(injectLoader, 1000);
+setTimeout(injectLoader, 1);
 (async () => {
     log("Checking for Updates...");
 
