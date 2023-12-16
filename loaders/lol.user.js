@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client CH
-// @version      1.0.0
+// @version      1.0.1
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // @downloadURL  https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "1.0.0";
+const CURRENT_RUNNING_VERSION = "1.0.1";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -32,7 +32,7 @@ function injectLoader() {
         return;
     }
 
-    var url = "https://starblast.io";
+    var url = "https://raw.githubusercontent.com/officialtroller/starblast-things/main/starblasts.html";
     var xhr = new XMLHttpRequest();
     log("Fetching starblast src...");
     xhr.open("GET", url);
@@ -291,6 +291,7 @@ function injectLoader() {
             const rabasom = localStorage.getItem("rabasom");
             const faborn = localStorage.getItem("faborn");
             const webonore = localStorage.getItem("webonore");
+            const beambock = localStorage.getItem("beambock");
             //main settings
             starSRC = starSRC.replace(/this\.hue,\.5,1/g, 'this.hue,1,1');
             starSRC = starSRC.replace(/this\.hue,\.5,.5/g, 'this.hue,1,1');
@@ -390,6 +391,11 @@ function injectLoader() {
             if (rabasom === "true") {
                 starSRC = starSRC.replace(/this\.radar_zoom=([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:[eE]([+-]?\d+))?/g, 'this.radar_zoom=1');
                 modlog('Radar upgraded');
+            }
+
+            if (beambock === "true") {
+                starSRC = starSRC.replace(/\s*&&\s*this\.team\.open/g, '');
+                modlog('Teams Hacked!');
             }
 
             if (faborn === "true") {
@@ -600,6 +606,15 @@ function injectLoader() {
                             boredto.appendChild(document.createTextNode("Weapon Store"));
                             boredto.style.userSelect = "none";
                             boredto.style.pointerEvents = "none";
+                            //Bypass Teamlock
+                            var eabock = document.createElement("input");
+                            eabock.type = "checkbox";
+                            eabock.id = "teamlock";
+                            var eamlock = document.createElement("label");
+                            eamlock.htmlFor = "teamlock";
+                            eamlock.appendChild(document.createTextNode("Bypass Teamlock"));
+                            eamlock.style.userSelect = "none";
+                            eamlock.style.pointerEvents = "none";
                             //example mod
                             var emablemod = document.createElement("input");
                             emablemod.type = "checkbox";
@@ -762,6 +777,9 @@ function injectLoader() {
                             settingstab.appendChild(bored);
                             settingstab.appendChild(boredto);
                             settingstab.appendChild(br1.cloneNode());
+                            settingstab.appendChild(eabock);
+                            settingstab.appendChild(eamlock);
+                            settingstab.appendChild(br1.cloneNode());
                             settingstab.appendChild(blurlol);
                             settingstab.appendChild(brurwha);
                             settingstab.appendChild(br1.cloneNode());
@@ -860,6 +878,7 @@ function injectLoader() {
     , "weaponists"
     , "voicechat"
     , "radarzoom"
+    , "teamlock"
     , "fastspawm"
     , "weaponstore"
     , "blankbadge"
@@ -925,6 +944,8 @@ function injectLoader() {
                             return "timdel";
                         case "radarzoom":
                             return "rabasom";
+                        case "teamlock":
+                            return "beambock";
                         case "fastspawm":
                             return "faborn";
                         case "weaponstore":
