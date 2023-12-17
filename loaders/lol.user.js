@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client CH
-// @version      1.0.2
+// @version      1.0.3
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // @downloadURL  https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "1.0.2";
+const CURRENT_RUNNING_VERSION = "1.0.3";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -32,7 +32,7 @@ function injectLoader() {
         return;
     }
 
-    var url = "https://raw.githubusercontent.com/officialtroller/starblast-things/main/starblasts.html";
+    var url = "https://raw.githubusercontent.com/officialtroller/starblast-things/main/starcools.html";
     var xhr = new XMLHttpRequest();
     log("Fetching starblast src...");
     xhr.open("GET", url);
@@ -41,7 +41,6 @@ function injectLoader() {
             var starSRC = xhr.responseText;
             if (starSRC !== undefined) {
                 log(`Src fetched successfully`);
-                /*console.log("Fetched Source Code:", starSRC);*/ // Add this line for debugging
             }
             if (localStorage.getItem("malaor") === null) {
                 localStorage.setItem("malaor", "#ff0000");
@@ -72,7 +71,7 @@ function injectLoader() {
                 let h, s, l = (max + min) / 2;
 
                 if (max === min) {
-                    h = s = 0; // achromatic
+                    h = s = 0;
                 } else {
                     const d = max - min;
                     s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
@@ -92,10 +91,8 @@ function injectLoader() {
                     h /= 6;
                 }
 
-                // Darken the color in the HSL space
                 l *= 1 - percent / 100;
 
-                // Convert back to RGB
                 let c = (1 - Math.abs(2 * l - 1)) * s;
                 let x = c * (1 - Math.abs((h * 6) % 2 - 1));
                 let m = l - c / 2;
@@ -138,25 +135,17 @@ function injectLoader() {
             log("Loading Mods...");
             //Materials
             const substrings = [
-        'case"carbon":this.buildCarbonMaterial();break;'
-
-                , "t.prototype.buildCarbonMaterial=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specular:6316128,shininess:5,bumpScale:.1,color:1052688,emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OIO10})},"
-
-                , 'case"titanium":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"#444"),s.addColorStop(.5,"#AAA"),s.addColorStop(.5,"#444"),s.addColorStop(1,"#111");break;'
-
-                , 'carbon:"Carbon"'
-
+               'case"carbon":this.buildCarbonMaterial();break;'
+               , "t.prototype.buildCarbonMaterial=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specular:6316128,shininess:5,bumpScale:.1,color:1052688,emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OIO10})},"
+               , 'case"titanium":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"#444"),s.addColorStop(.5,"#AAA"),s.addColorStop(.5,"#444"),s.addColorStop(1,"#111");break;'
+               , 'carbon:"Carbon"'
             , ];
             const malaor = localStorage.getItem("malaor");
             const additions = [
-        'case"x27":this.buildX27Material();break;case"fullcool":this.buildFullColorMaterial();break;case"dimamond":this.buildDiamondMaterial();break;case"fx27":this.buildfX27Material();break;case"blackmonk":this.buildmonkMaterial();break;'
-
-                , `t.prototype.buildfX27Material=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specularMap:I1l0O,specular:1052688,shininess:10,bumpScale:.1,color:"${malaor}",emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OIO10})},t.prototype.buildX27Material=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specularMap:I1l0O,specular:4243711,shininess:30,bumpScale:.1,color:5275808,emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OOOO0})},t.prototype.buildFullColorMaterial=function(){var t;return t=OlIl0.hsvToRgbHex(this.hue,1,1),this.material=new THREE.MeshPhongMaterial({map:OOO0I,bumpMap:OOO0I,specularMap:OOO0I,specular:12632256,shininess:50,bumpScale:.1,color:t,emissive:OlIl0.hsvToRgbHex(this.hue,.5,1),emissiveMap:II1ll})},t.prototype.buildDiamondMaterial=function(){return this.material=new THREE.MeshPhongMaterial({map:OOO0I,bumpMap:OOO0I,specular:16777215,opacity:.5,shininess:50,side:THREE.DoubleSide,bumpScale:.1,transparent:!0,color:8421504,emissive:OlIl0.hsvToRgbHex(this.hue,.5,1),emissiveMap:II1ll})},t.prototype.buildmonkMaterial=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specular:0,shininess:0,bumpScale:.1,color:0,emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OIO10})},`
-
-                , 'case"fx27":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"' + darkenColor(malaor, 50) + '"),s.addColorStop(.5,"' + malaor + '"),s.addColorStop(.5,"' + darkenColor(malaor, 30) + '"),s.addColorStop(1,"' + darkenColor(malaor, 10) + '");break;case"x27":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"hsla(220,100%,30%)"),s.addColorStop(.5,"hsla(200,100%,70%)"),s.addColorStop(.5,"hsla(220,100%,40%)"),s.addColorStop(1,"hsla(200,100%,70%)");break;case"fullcool":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"hsl(" + this.hue + ",90%,50%)"),s.addColorStop(.5,"hsl(" + this.hue + ",90%,70%)"),s.addColorStop(.5,"hsl(" + this.hue + ",90%,30%)"),s.addColorStop(1,"hsl(" + this.hue + ",90%,60%)");break;case"dimamond":for(s=t.createLinearGradient(0,0,0,i),h=Math.min(10,this.size/10),n=a=0,u=h-1;a<=u;n=a+=1)s.addColorStop(n/h,"#757575"),s.addColorStop((n+1)/h,"#222");for(l=t.createLinearGradient(0,0,0,i),l.addColorStop(0,"#ff0000"),l.addColorStop(.1,"#ff0000"),n=o=0,d=h-1;o<=d;n=o+=1)l.addColorStop((n+.5)/h,"#ff0000"),l.addColorStop(Math.min(1,(n+1.5)/h),"#ff0000");break;case"blackmonk":for(s=t.createLinearGradient(0,0,0,i),h=Math.min(10,this.size/10),l=a=0,u=h-1;a<=u;l=a+=1)s.addColorStop(l/h,"#000"),s.addColorStop((l+1)/h,"#2c2c2c");for(n=t.createLinearGradient(0,0,0,i),n.addColorStop(0,"#181818"),n.addColorStop(.1,"#2c2c2c"),l=o=0,d=h-1;o<=d;l=o+=1)n.addColorStop((l+.5)/h,"#000"),n.addColorStop(Math.min(1,(l+1.5)/h),"#2c2c2c");break;'
-
-                , ',x27:"Electric Blue",fullcool:"Full Color",dimamond:"Diamond",fx27:"Custom Material",blackmonk:"Ultra Carbon"'
-
+               'case"fx27":this.buildfX27Material();break;'
+               , `t.prototype.buildfX27Material=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specularMap:I1l0O,specular:1052688,shininess:10,bumpScale:.1,color:"${malaor}",emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OIO10})},`
+               , 'case"fx27":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"' + darkenColor(malaor, 50) + '"),s.addColorStop(.5,"' + malaor + '"),s.addColorStop(.5,"' + darkenColor(malaor, 30) + '"),s.addColorStop(1,"' + darkenColor(malaor, 10) + '");break;'
+               , ',fx27:"Custom Material"'
             , ];
             for (let i = 0; i < substrings.length; i++) {
                 const index = starSRC.indexOf(substrings[i]);
@@ -266,11 +255,6 @@ function injectLoader() {
                 }
             }
             modlog("Badges added");
-            //Client Settings
-            /*let scibidy = document.createElement("script");
-            scibidy.src =
-                "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/settingstablablarus.js";
-            document.body.appendChild(scibidy);*/
             //Badge Manager
             let sibiti = document.createElement("script");
             sibiti.src =
@@ -415,7 +399,6 @@ function injectLoader() {
                 , "https://raw.githubusercontent.com/immagangster2/justsomething/main/clientlolgo.png"
             );
             modlog(`Logo replaced`);
-            //log(`Modified Code:\n\n${starSRC}`);
             const end_time = performance.now();
             log(`Loaded Mods successfully (${(end_time - start_time).toFixed(0)}ms)`);
             document.open();
@@ -427,14 +410,6 @@ function injectLoader() {
                 stylelog("Loading Style");
                 document.getElementById("training").style.display = "none";
 
-                function addCss(url) {
-                    var link = document.createElement("link");
-                    link.rel = "stylesheet";
-                    link.type = "text/css";
-                    link.href = url;
-                    document.getElementsByTagName("head")[0].appendChild(link);
-                }
-                addCss("https://officialtroller.github.io/css/clitentecsssv1mini.css");
                 if (blurdes === "true") {
                     var overlay = document.querySelector("#overlay");
                     var div = document.createElement("div");
@@ -866,24 +841,24 @@ function injectLoader() {
 
                 function loadSettings() {
                     var settings = [
-    "uncoverLeader"
-    , "exampleMod"
-    , "removeTimer"
-    , "emoteCapacity"
-    , "gemColor"
-    , "gemColor1"
-    , "lowercaseName"
-    , "blurlol"
-    , "stationists"
-    , "weaponists"
-    , "voicechat"
-    , "radarzoom"
-    , "teamlock"
-    , "fastspawm"
-    , "weaponstore"
-    , "blankbadge"
-    , "matcolor"
-  , ];
+                         "uncoverLeader"
+                         , "exampleMod"
+                         , "removeTimer"
+                         , "emoteCapacity"
+                         , "gemColor"
+                         , "gemColor1"
+                         , "lowercaseName"
+                         , "blurlol"
+                         , "stationists"
+                         , "weaponists"
+                         , "voicechat"
+                         , "radarzoom"
+                         , "teamlock"
+                         , "fastspawm"
+                         , "weaponstore"
+                         , "blankbadge"
+                         , "matcolor"
+                    , ];
 
                     settings.forEach(function(setting) {
                         var key = getKey(setting);
