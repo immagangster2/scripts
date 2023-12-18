@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client CH
-// @version      1.0.3
+// @version      1.0.4
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // @downloadURL  https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "1.0.3";
+const CURRENT_RUNNING_VERSION = "1.0.4";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -360,16 +360,20 @@ function injectLoader() {
             }
             if (goodles === "true") {
                 starSRC = starSRC.replace(
-                    /,\s*"blank"\s*!==\s*this\.custom\.badge/
-                    , ',"blank"'
+                    /,\s*"blank"\s*!==\s*this\.custom\.badge/, ',"blank"'
                 );
                 starSRC = starSRC.replace(
-                    /default:t.fillStyle="hsl\(200,50%,20%\)"/
-                    , 'case"blank":t.fillStyle="hsla(50, 100%, 70%, 0)";break;default:t.fillStyle="hsl(200,50%,20%)"'
+                    /default:t.fillStyle="hsl\(200,50%,20%\)"/, 'case"blank":t.fillStyle="hsla(50, 100%, 70%, 0)";break;default:t.fillStyle="hsl(120,50%,20%)"'
                 );
                 starSRC = starSRC.replace(
-                    /default:t.fillStyle="hsl\(50,100%,70%\)"/
-                    , 'case"star":t.fillStyle="hsl(50,100%,70%)",t.fillText("S",e/2,i/2);break;case"blank":t.fillStyle="hsla(50, 100%, 70%, 0)";break;default:t.fillStyle="hsl(50,100%,70%)"'
+                    /default:t\.fillStyle="hsl\(50,100%,70%\)".*t\.fillText\("S",\w+\/2,\w+\/2\)/, 'case"star":t.fillStyle="hsl(50,100%,70%)",t.fillText("S",e/2,i/2);break;case"blank":t.fillStyle="hsla(50, 100%, 70%, 0)";break;default:t.fillStyle="hsl(0,100%,50%)",t.fillText("",e/2,i/2)'
+                );
+            } else {
+                starSRC = starSRC.replace(
+                    /default:t.fillStyle="hsl\(200,50%,20%\)"/, ';default:t.fillStyle="hsl(200,50%,20%)"'
+                );
+                starSRC = starSRC.replace(
+                    /default:t\.fillStyle="hsl\(50,100%,70%\)".*t\.fillText\("S",\w+\/2,\w+\/2\)/, 'default:t.fillStyle="hsl(0,100%,50%)",t.fillText("",e/2,i/2)'
                 );
             }
             if (rabasom === "true") {
