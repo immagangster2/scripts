@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client CH
-// @version      1.0.4
+// @version      1.0.3
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // @downloadURL  https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "1.0.4";
+const CURRENT_RUNNING_VERSION = "1.0.3";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -178,34 +178,27 @@ function injectLoader() {
                         modifiedVocabulary = existingVocabulary + "," + additionalEmotes;
                     }
                     starSRC = starSRC.replace(
-                        modeRegex
-                        , `${prefix}${middleCode}${vocabularyPrefix}${modifiedVocabulary}${suffix}`
+                        modeRegex, `${prefix}${middleCode}${vocabularyPrefix}${modifiedVocabulary}${suffix}`
                     );
                 }
             }
             modifyVocabulary(
-                "TutorialMode"
-                , '{text:"Nigger",icon:"®",key:"I"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"Me",icon:"?",key:"E"},{text:"You",icon:">",key:"D"},{text:"IM a Loser",icon:" ",key:"V"}'
+                "TutorialMode", '{text:"Nigger",icon:"®",key:"I"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"Me",icon:"?",key:"E"},{text:"You",icon:">",key:"D"},{text:"IM a Loser",icon:" ",key:"V"}'
             );
             modifyVocabulary(
-                "SurvivalMode"
-                , '{text:"Nigger",icon:"®",key:"I"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"Me",icon:"?",key:"E"},{text:"You",icon:">",key:"D"},{text:"IM a Loser",icon:" ",key:"V"}'
+                "SurvivalMode", '{text:"Nigger",icon:"®",key:"I"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"Me",icon:"?",key:"E"},{text:"You",icon:">",key:"D"},{text:"IM a Loser",icon:" ",key:"V"}'
             );
             modifyVocabulary(
-                "TeamMode"
-                , '{text:"Nigger",icon:"®",key:"I"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"contribute",icon:"°",key:"L"},{text:"Hello",icon:":",key:"W"},{ text: "Bye", icon: "F", key: "H" }'
+                "TeamMode", '{text:"Nigger",icon:"®",key:"I"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"contribute",icon:"°",key:"L"},{text:"Hello",icon:":",key:"W"},{ text: "Bye", icon: "F", key: "H" }'
             );
             modifyVocabulary(
-                "InvasionMode"
-                , '{text:"Nigger",icon:"®",key:"T"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"Alien",icon:"0",key:"W"},{text:"Boss",icon:"¿",key:"V"}'
+                "InvasionMode", '{text:"Nigger",icon:"®",key:"T"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"Alien",icon:"0",key:"W"},{text:"Boss",icon:"¿",key:"V"}'
             );
             modifyVocabulary(
-                "DeathMatchMode"
-                , '{text:"Good Game",icon:"GG",key:"G"}'
+                "DeathMatchMode", '{text:"Good Game",icon:"GG",key:"G"}'
             );
             modifyVocabulary(
-                "BattleRoyaleMode"
-                , '{text:"Good Game",icon:"GG",key:"G"}'
+                "BattleRoyaleMode", '{text:"Good Game",icon:"GG",key:"G"}'
             );
             modlog("Emotes added");
             //Badges
@@ -225,8 +218,8 @@ function injectLoader() {
                     let newBadges = "";
 
                     badgegersData.forEach(({
-                        name
-                        , url
+                        name,
+                        url
                     }) => {
                         const sanitizedCaseName = name.replace(/\s/g, "");
                         newCases += newCaseTemplate
@@ -255,11 +248,6 @@ function injectLoader() {
                 }
             }
             modlog("Badges added");
-            //Badge Manager
-            let sibiti = document.createElement("script");
-            sibiti.src =
-                "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/badge-managerse.js";
-            document.body.appendChild(sibiti);
             const lowNameCase = localStorage.getItem("lownamecase");
             const timDel = localStorage.getItem("timdel");
             const noobus = localStorage.getItem("noobus");
@@ -280,8 +268,7 @@ function injectLoader() {
             starSRC = starSRC.replace(/this\.hue,\.5,1/g, 'this.hue,1,1');
             starSRC = starSRC.replace(/this\.hue,\.5,.5/g, 'this.hue,1,1');
             starSRC = starSRC.replace(
-                /"fullcolor"===this\.custom\.finish&&(this\.custom\.finish="alloy"),/
-                , ""
+                /"fullcolor"===this\.custom\.finish&&(this\.custom\.finish="alloy"),/, ""
             );
             if (oiceat) {
                 let vcscript = document.createElement("script");
@@ -325,20 +312,17 @@ function injectLoader() {
 
             if (timDel === "true") {
                 starSRC = starSRC.replace(
-                    /<\/span>\s*\(<span id="menucountdown"><\/span>\)/
-                    , ""
+                    /<\/span>\s*\(<span id="menucountdown"><\/span>\)/, ""
                 );
                 starSRC = starSRC.replace(
-                    /e\.prototype\.countdown=function\(\)\{[^}]*\},/
-                    , ""
+                    /e\.prototype\.countdown=function\(\)\{[^}]*\},/, ""
                 );
                 modlog(`Timer removed`);
             }
 
             if (noobus === "true") {
                 starSRC = starSRC.replace(
-                    "Elite Commander Pass"
-                    , "Noob Commander Pass"
+                    "Elite Commander Pass", "Noob Commander Pass"
                 );
                 starSRC = starSRC.replace("LEADERBOARD", "Leaderboard");
                 modlog(`Noob Pass loaded`);
@@ -346,15 +330,13 @@ function injectLoader() {
 
             if (leaderunde === "true") {
                 starSRC = starSRC.replace(
-                    /this\.[iI10OlL]{3,6}\.mode\.radar_shows_leader/g
-                    , "1"
+                    /this\.[iI10OlL]{3,6}\.mode\.radar_shows_leader/g, "1"
                 );
                 modlog(`Leader Uncovered`);
             }
             if (blurdes === "true") {
                 starSRC = starSRC.replace(
-                    /(r\.addEventListener\("click",function\(\)\{)(if\(a\|\|i\.featured\))(.+?)(t\.closeModal\(\),t\.startModdingMode\(i\)\}\))/
-                    , '$1document.querySelector("#blur").remove();$2$3$4'
+                    /(r\.addEventListener\("click",function\(\)\{)(if\(a\|\|i\.featured\))(.+?)(t\.closeModal\(\),t\.startModdingMode\(i\)\}\))/, '$1document.querySelector("#blur").remove();$2$3$4'
                 );
                 modlog(`Blur Added`);
             }
@@ -399,8 +381,7 @@ function injectLoader() {
             var regex = /var\s+x\s*=\s*document\.querySelector\(".training"\),/;
             starSRC = starSRC.replace(regex, "");
             starSRC = starSRC.replace(
-                "https://starblast.data.neuronality.com/img/starblast_io_logo.svg?3"
-                , "https://raw.githubusercontent.com/immagangster2/justsomething/main/clientlolgo.png"
+                "https://starblast.data.neuronality.com/img/starblast_io_logo.svg?3", "https://raw.githubusercontent.com/immagangster2/justsomething/main/clientlolgo.png"
             );
             modlog(`Logo replaced`);
             const end_time = performance.now();
@@ -479,9 +460,7 @@ function injectLoader() {
                             settingstab.style.webkitBackdropFilter = "blur(5px)";
                             settingstab.style.zIndex = "9999";
                             settingstab.style.display = "none";
-                            let offsetX
-                                , offsetY
-                                , isDragging = false;
+                            let offsetX, offsetY, isDragging = false;
                             settingstab.addEventListener("mousedown", (e) => {
                                 const target = e.target;
 
@@ -959,6 +938,172 @@ function injectLoader() {
 
                     return value ? JSON.parse(value) : false;
                 }
+                console.log('Badge Manager loaded');
+
+                var socialDiv = document.querySelector('.social');
+
+                if (socialDiv) {
+                    var alienIcon = document.createElement('i');
+                    alienIcon.className = 'sbg sbg-alien';
+                    socialDiv.appendChild(alienIcon);
+                    var badgeManager = null;
+
+                    alienIcon.addEventListener('mousedown', function(event) {
+                        if (!badgeManager) {
+                            console.log('Badge manager opened');
+                            badgeManager = document.createElement('div');
+                            badgeManager.id = 'badge-manager';
+                            badgeManager.style.width = '500px';
+                            badgeManager.style.background = 'hsla(60, 100%, 50%, 0.3)';
+                            badgeManager.style.borderRadius = '20px';
+                            badgeManager.style.padding = '40px';
+                            badgeManager.style.boxShadow = '0 0 10px rgba(0,0,0,.3)';
+                            badgeManager.style.position = 'fixed';
+                            badgeManager.style.left = '50%';
+                            badgeManager.style.top = '50%';
+                            badgeManager.style.transform = 'translate(-50%, -50%)';
+                            badgeManager.style.backdropFilter = 'blur(5px)';
+                            badgeManager.style.webkitBackdropFilter = 'blur(5px)';
+                            badgeManager.style.zIndex = '9999'; // Set a high z-index to bring it to the front
+                            badgeManager.style.display = 'none';
+                            let offsetX, offsetY, isDragging = false;
+                            badgeManager.addEventListener('mousedown', (e) => {
+                                isDragging = true;
+                                offsetX = e.clientX - (badgeManager.getBoundingClientRect().left + badgeManager.offsetWidth / 2);
+                                offsetY = e.clientY - (badgeManager.getBoundingClientRect().top + badgeManager.offsetHeight / 2);
+                            });
+
+                            document.addEventListener('mousemove', (e) => {
+                                if (!isDragging) return;
+
+                                const x = e.clientX - offsetX;
+                                const y = e.clientY - offsetY;
+
+                                badgeManager.style.left = `${x}px`;
+                                badgeManager.style.top = `${y}px`;
+                            });
+
+                            document.addEventListener('mouseup', () => {
+                                isDragging = false;
+                            });
+                            var closeButtonTopRight = document.createElement('button');
+                            closeButtonTopRight.textContent = 'X';
+                            closeButtonTopRight.style.position = 'absolute';
+                            closeButtonTopRight.style.top = '10px';
+                            closeButtonTopRight.style.right = '10px';
+                            closeButtonTopRight.style.userSelect = 'none';
+
+                            closeButtonTopRight.addEventListener('click', function(event) {
+                                event.stopPropagation();
+                                badgeManager.remove();
+                                badgeManager = null;
+                            });
+
+                            badgeManager.appendChild(closeButtonTopRight);
+
+                            var header = document.createElement('h2');
+                            header.innerText = 'Badge Manager';
+                            header.style.userSelect = 'none';
+                            header.style.pointerEvents = 'none';
+                            badgeManager.appendChild(header);
+
+                            var addBadgeButton = document.createElement('button');
+                            addBadgeButton.innerText = 'Add Badge';
+                            addBadgeButton.style.userSelect = 'none';
+                            addBadgeButton.onclick = function() {
+                                var name = prompt('Enter a name for the badge:');
+                                if (name !== null && name !== '') {
+                                    var url = prompt('Enter a valid link with jpg or png:');
+                                    if (url !== null && validateUrl(url)) {
+                                        saveBadge(name, url);
+                                        location.reload();
+                                        displayBadge(name, url);
+                                    } else {
+                                        alert('Please enter a valid link with jpg or png.');
+                                    }
+                                }
+                            };
+                            badgeManager.appendChild(addBadgeButton);
+
+                            document.body.appendChild(badgeManager);
+                            badgeManager.style.display = 'block';
+                            var savedBadges = JSON.parse(localStorage.getItem('badgergers')) || [];
+                            savedBadges.forEach(function(badge) {
+                                displayBadge(badge.name, badge.url);
+                            });
+                        }
+                    });
+                }
+
+                function validateUrl(url) {
+                    var regex = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i;
+                    return regex.test(url);
+                }
+
+                function saveBadge(name, url) {
+                    var badges = JSON.parse(localStorage.getItem('badgergers')) || [];
+                    badges.push({
+                        "name": name,
+                        "url": url
+                    });
+                    localStorage.setItem('badgergers', JSON.stringify(badges));
+                }
+
+                function displayBadge(name, url) {
+                    var badge = document.createElement('div');
+                    badge.style.display = 'flex';
+                    badge.style.alignItems = 'center';
+                    badge.style.marginBottom = '10px';
+
+                    var img = document.createElement('img');
+                    img.src = url;
+                    img.style.width = '64px';
+                    img.style.height = '64px';
+                    img.style.userSelect = 'none';
+                    img.style.pointerEvents = 'none';
+                    img.style.borderRadius = '50%';
+                    badge.appendChild(img);
+
+                    var badgeName = document.createElement('p');
+                    badgeName.innerText = name;
+                    badgeName.style.marginLeft = '10px';
+                    badgeName.style.userSelect = 'none';
+                    badgeName.style.pointerEvents = 'none';
+                    badge.appendChild(badgeName);
+
+                    var closeButton = document.createElement('button');
+                    closeButton.innerText = 'x';
+                    closeButton.style.marginLeft = 'auto';
+                    closeButton.style.userSelect = 'none';
+                    closeButton.style.userSelect = 'none';
+                    closeButton.onclick = function() {
+                        badge.remove();
+                        location.reload();
+                        updateLocalStorage();
+                    };
+                    badge.appendChild(closeButton);
+
+                    badgeManager.appendChild(badge);
+                }
+
+                function updateLocalStorage() {
+                    var badges = [];
+                    document.querySelectorAll('#badge-manager div').forEach(function(badgeElement) {
+                        var name = badgeElement.querySelector('p').innerText;
+                        var url = badgeElement.querySelector('img').src;
+                        badges.push({
+                            "name": name,
+                            "url": url
+                        });
+                    });
+
+                    if (badges.length > 0) {
+                        localStorage.setItem('badgergers', JSON.stringify(badges));
+                    } else {
+                        localStorage.removeItem('badgergers');
+                    }
+                }
+
 
 
                 stylelog(`Css applied`);
@@ -976,31 +1121,22 @@ setTimeout(injectLoader, 1);
 (async () => {
     log("Checking for Updates...");
 
-    let shouldReload = false;
-
     GM.xmlHttpRequest({
         method: "GET",
         url: "https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js",
         responseType: "text",
-        onload: function (response) {
+        onload: function(response) {
             const remoteScriptText = response.responseText;
             const remoteMatch = remoteScriptText.match(/@version\s+(\S+)/i);
             if (remoteMatch && remoteMatch[1] && remoteMatch[1] !== CURRENT_RUNNING_VERSION) {
                 updatelog(`New version available: ${remoteMatch[1]}`);
                 window.location.href = "https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js";
-                shouldReload = true;
             } else {
                 updtaelog('Script is up to date');
             }
         },
-        onerror: function (error) {
+        onerror: function(error) {
             console.error(error);
         }
     });
-
-    if (shouldReload) {
-        setTimeout(() => {
-            location.reload();
-        }, 5000);
-    }
 })();
