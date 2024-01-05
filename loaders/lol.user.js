@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client CH
-// @version      1.0.4
+// @version      2.0.0
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // @downloadURL  https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "1.0.4";
+const CURRENT_RUNNING_VERSION = "2.0.0";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -32,7 +32,7 @@ function injectLoader() {
         return;
     }
 
-    var url = "https://raw.githubusercontent.com/officialtroller/starblast-things/main/starcools.html";
+    var url = "https://raw.githubusercontent.com/immagangster2/justsomething/main/test%20thing.html";
     var xhr = new XMLHttpRequest();
     log("Fetching starblast src...");
     xhr.open("GET", url);
@@ -159,48 +159,6 @@ function injectLoader() {
                 }
             }
             modlog("Materials added");
-            //Emotes
-            function modifyVocabulary(mode, additionalEmotes) {
-                const modeRegex = new RegExp(
-                    `(this\\.${mode}=function\\(e\\)\\{)([\\s\\S]*?)(this\\.vocabulary=\\[)([\\s\\S]*?)(\\])`
-                );
-                const matchMode = starSRC.match(modeRegex);
-                if (matchMode) {
-                    const prefix = matchMode[1];
-                    const middleCode = matchMode[2];
-                    const vocabularyPrefix = matchMode[3];
-                    const existingVocabulary = matchMode[4];
-                    const suffix = matchMode[5];
-                    let modifiedVocabulary;
-                    if (mode === "DeathMatchMode" || mode === "BattleRoyaleMode") {
-                        modifiedVocabulary = additionalEmotes;
-                    } else {
-                        modifiedVocabulary = existingVocabulary + "," + additionalEmotes;
-                    }
-                    starSRC = starSRC.replace(
-                        modeRegex, `${prefix}${middleCode}${vocabularyPrefix}${modifiedVocabulary}${suffix}`
-                    );
-                }
-            }
-            modifyVocabulary(
-                "TutorialMode", '{text:"Nigger",icon:"®",key:"I"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"Me",icon:"?",key:"E"},{text:"You",icon:">",key:"D"},{text:"IM a Loser",icon:" ",key:"V"}'
-            );
-            modifyVocabulary(
-                "SurvivalMode", '{text:"Nigger",icon:"®",key:"I"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"Me",icon:"?",key:"E"},{text:"You",icon:">",key:"D"},{text:"IM a Loser",icon:" ",key:"V"}'
-            );
-            modifyVocabulary(
-                "TeamMode", '{text:"Nigger",icon:"®",key:"I"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"contribute",icon:"°",key:"L"},{text:"Hello",icon:":",key:"W"},{ text: "Bye", icon: "F", key: "H" }'
-            );
-            modifyVocabulary(
-                "InvasionMode", '{text:"Nigger",icon:"®",key:"T"},{text:"EOT=Trash",icon:"🤡",key:"J"},{text:"Alien",icon:"0",key:"W"},{text:"Boss",icon:"¿",key:"V"}'
-            );
-            modifyVocabulary(
-                "DeathMatchMode", '{text:"Good Game",icon:"GG",key:"G"}'
-            );
-            modifyVocabulary(
-                "BattleRoyaleMode", '{text:"Good Game",icon:"GG",key:"G"}'
-            );
-            modlog("Emotes added");
             //Badges
             const localStorageKey = "badgergers";
             const localStorageData = localStorage.getItem(localStorageKey);
@@ -265,6 +223,383 @@ function injectLoader() {
             const webonore = localStorage.getItem("webonore");
             const beambock = localStorage.getItem("beambock");
             //main settings
+                        let trollClientScript = document.createElement('script');
+            trollClientScript.textContent = `
+            class trollclient {
+                guidetect() {
+                    return "im here!";
+                }
+                troller() {
+    if (window.troller == true) {
+      window.troller = false;
+      console.log("Troller Simulator disabled");
+    } else {
+      window.troller = true;
+      if (Object.values(Object.values(window.module.exports.settings).find(_0x568bd9 => _0x568bd9.mode)).find(_0x218be2 => _0x218be2.status).status.shield != 0 && Object.values(Object.values(window.module.exports.settings).find(_0x4e3e9e => _0x4e3e9e.mode)).find(_0x3a15de => _0x3a15de.status).status.generator != 0) {
+        var number = 0;
+        var objval = Object.values(Object.values(window.module.exports.settings).find(_0x4ae68f => _0x4ae68f.mode)).find(_0x3cbdf0 => _0x3cbdf0.socket).socket;
+        console.log("Troller Simulator enabled");
+        function onnoff() {
+          function sayemote(_0x5dfe35) {
+            var saythng = {
+              name: "say",
+              data: _0x5dfe35
+            };
+            objval.send(JSON.stringify(saythng));
+          }
+          var onofffunc = false;
+          if (onofffunc == false && number == 0) {
+            number = 1;
+            sayemote("OGOYO");
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 1) {
+            sayemote("OOGOY");
+            number = 2;
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 2) {
+            sayemote("YOOGO");
+            number = 3;
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 3) {
+            sayemote("OYOOG");
+            number = 4;
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 4) {
+            sayemote("GOYOO");
+            number = 0;
+            onofffunc = true;
+          }
+          if (window.troller == true) {
+            setTimeout(onnoff, 600);
+          }
+        }
+        onnoff();
+      }
+    }
+  }
+
+  blank() {
+    if (window.blank == true) {
+      window.blank = false;
+      console.log("Troller Simulator disabled");
+    } else {
+      window.blank = true;
+      if (Object.values(Object.values(window.module.exports.settings).find(_0x568bd9 => _0x568bd9.mode)).find(_0x218be2 => _0x218be2.status).status.shield != 0 && Object.values(Object.values(window.module.exports.settings).find(_0x4e3e9e => _0x4e3e9e.mode)).find(_0x3a15de => _0x3a15de.status).status.generator != 0) {
+        var number = 0;
+        var objval = Object.values(Object.values(window.module.exports.settings).find(_0x4ae68f => _0x4ae68f.mode)).find(_0x3cbdf0 => _0x3cbdf0.socket).socket;
+        console.log("Blank Simulator enabled");
+        function onnoff() {
+          function sayemote(_0x5dfe35) {
+            var saythng = {
+              name: "say",
+              data: _0x5dfe35
+            };
+            objval.send(JSON.stringify(saythng));
+          }
+          var onofffunc = false;
+          if (onofffunc == false && number == 0) {
+            number = 1;
+            sayemote("ooooo");
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 1) {
+            sayemote("ooooo");
+            number = 2;
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 2) {
+            sayemote("ooooo");
+            number = 3;
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 3) {
+            sayemote("ooooo");
+            number = 4;
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 4) {
+            sayemote("ooooo");
+            number = 0;
+            onofffunc = true;
+          }
+          if (window.blank == true) {
+            setTimeout(onnoff, 600);
+          }
+        }
+        onnoff();
+      }
+    }
+  }
+    notnnd() {
+    if (window.notnnd == true) {
+      window.notnnd = false;
+      console.log("Troller Simulator disabled");
+    } else {
+      window.notnnd = true;
+      if (Object.values(Object.values(window.module.exports.settings).find(_0x568bd9 => _0x568bd9.mode)).find(_0x218be2 => _0x218be2.status).status.shield != 0 && Object.values(Object.values(window.module.exports.settings).find(_0x4e3e9e => _0x4e3e9e.mode)).find(_0x3a15de => _0x3a15de.status).status.generator != 0) {
+        var number = 0;
+        var objval = Object.values(Object.values(window.module.exports.settings).find(_0x4ae68f => _0x4ae68f.mode)).find(_0x3cbdf0 => _0x3cbdf0.socket).socket;
+        console.log("Troller Simulator enabled");
+        function onnoff() {
+          function sayemote(_0x5dfe35) {
+            var saythng = {
+              name: "say",
+              data: _0x5dfe35
+            };
+            objval.send(JSON.stringify(saythng));
+          }
+          var onofffunc = false;
+          if (onofffunc == false && number == 0) {
+            number = 1;
+            sayemote("DIIII");
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 1) {
+            sayemote("IDIII");
+            number = 2;
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 2) {
+            sayemote("IIDII");
+            number = 3;
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 3) {
+            sayemote("IIIDI");
+            number = 4;
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 4) {
+            sayemote("IIIID");
+            number = 0;
+            onofffunc = true;
+          }
+          if (window.notnnd == true) {
+            setTimeout(onnoff, 600);
+          }
+        }
+        onnoff();
+      }
+    }
+  }
+
+      devrim() {
+    if (window.devrim == true) {
+      window.devrim = false;
+      console.log("Troller Simulator disabled");
+    } else {
+      window.devrim = true;
+      if (Object.values(Object.values(window.module.exports.settings).find(_0x568bd9 => _0x568bd9.mode)).find(_0x218be2 => _0x218be2.status).status.shield != 0 && Object.values(Object.values(window.module.exports.settings).find(_0x4e3e9e => _0x4e3e9e.mode)).find(_0x3a15de => _0x3a15de.status).status.generator != 0) {
+        var number = 0;
+        var objval = Object.values(Object.values(window.module.exports.settings).find(_0x4ae68f => _0x4ae68f.mode)).find(_0x3cbdf0 => _0x3cbdf0.socket).socket;
+        console.log("Troller Simulator enabled");
+        function onnoff() {
+          function sayemote(_0x5dfe35) {
+            var saythng = {
+              name: "say",
+              data: _0x5dfe35
+            };
+            objval.send(JSON.stringify(saythng));
+          }
+          var onofffunc = false;
+          if (onofffunc == false && number == 0) {
+            number = 1;
+            sayemote("QXQXQ");
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 1) {
+            sayemote("QAQAQ");
+            number = 2;
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 2) {
+            sayemote("QSQSQ");
+            number = 0;
+            onofffunc = true;
+          }
+          if (window.devrim == true) {
+            setTimeout(onnoff, 600);
+          }
+        }
+        onnoff();
+      }
+    }
+  }
+      rithy() {
+    if (window.rithy == true) {
+      window.rithy = false;
+      console.log("Troller Simulator disabled");
+    } else {
+      window.rithy = true;
+      if (Object.values(Object.values(window.module.exports.settings).find(_0x568bd9 => _0x568bd9.mode)).find(_0x218be2 => _0x218be2.status).status.shield != 0 && Object.values(Object.values(window.module.exports.settings).find(_0x4e3e9e => _0x4e3e9e.mode)).find(_0x3a15de => _0x3a15de.status).status.generator != 0) {
+        var number = 0;
+        var objval = Object.values(Object.values(window.module.exports.settings).find(_0x4ae68f => _0x4ae68f.mode)).find(_0x3cbdf0 => _0x3cbdf0.socket).socket;
+        console.log("Troller Simulator enabled");
+        function onnoff() {
+          function sayemote(_0x5dfe35) {
+            var saythng = {
+              name: "say",
+              data: _0x5dfe35
+            };
+            objval.send(JSON.stringify(saythng));
+          }
+          var onofffunc = false;
+          if (onofffunc == false && number == 0) {
+            number = 1;
+            sayemote("JOOOO");
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 1) {
+            sayemote("OJOOO");
+            number = 2;
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 2) {
+            sayemote("OOJOO");
+            number = 3;
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 3) {
+            sayemote("OOOJO");
+            number = 4;
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 4) {
+            sayemote("OOOOJ");
+            number = 0;
+            onofffunc = true;
+          }
+          if (window.rithy == true) {
+            setTimeout(onnoff, 600);
+          }
+        }
+        onnoff();
+      }
+    }
+  }
+      thxsry() {
+    if (window.rithy == true) {
+      window.rithy = false;
+      console.log("Troller Simulator disabled");
+    } else {
+      window.rithy = true;
+      if (Object.values(Object.values(window.module.exports.settings).find(_0x568bd9 => _0x568bd9.mode)).find(_0x218be2 => _0x218be2.status).status.shield != 0 && Object.values(Object.values(window.module.exports.settings).find(_0x4e3e9e => _0x4e3e9e.mode)).find(_0x3a15de => _0x3a15de.status).status.generator != 0) {
+        var number = 0;
+        var objval = Object.values(Object.values(window.module.exports.settings).find(_0x4ae68f => _0x4ae68f.mode)).find(_0x3cbdf0 => _0x3cbdf0.socket).socket;
+        console.log("Troller Simulator enabled");
+        function onnoff() {
+          function sayemote(_0x5dfe35) {
+            var saythng = {
+              name: "say",
+              data: _0x5dfe35
+            };
+            objval.send(JSON.stringify(saythng));
+          }
+          var onofffunc = false;
+          if (onofffunc == false && number == 0) {
+            number = 1;
+            sayemote("ooXoo");
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 1) {
+            sayemote("XXoXX");
+            number = 0;
+            onofffunc = true;
+          }
+          if (window.rithy == true) {
+            setTimeout(onnoff, 250);
+          }
+        }
+        onnoff();
+      }
+    }
+  }
+    example() {
+    if (window.example == true) {
+      window.example = false;
+      console.log("Troller Simulator disabled");
+    } else {
+      window.example = true;
+      if (Object.values(Object.values(window.module.exports.settings).find(_0x568bd9 => _0x568bd9.mode)).find(_0x218be2 => _0x218be2.status).status.shield != 0 && Object.values(Object.values(window.module.exports.settings).find(_0x4e3e9e => _0x4e3e9e.mode)).find(_0x3a15de => _0x3a15de.status).status.generator != 0) {
+        var number = 0;
+        var objval = Object.values(Object.values(window.module.exports.settings).find(_0x4ae68f => _0x4ae68f.mode)).find(_0x3cbdf0 => _0x3cbdf0.socket).socket;
+        console.log("Troller Simulator enabled");
+        function onnoff() {
+          function sayemote(_0x5dfe35) {
+            var saythng = {
+              name: "say",
+              data: _0x5dfe35
+            };
+            objval.send(JSON.stringify(saythng));
+          }
+          var onofffunc = false;
+          if (onofffunc == false && number == 0) {
+            number = 1;
+            sayemote("JQYQX");
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 1) {
+            sayemote("YQJQX");
+            number = 2;
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 2) {
+            sayemote("XQYQJ");
+            number = 3;
+            onofffunc = true;
+          }
+          if (onofffunc == false && number == 3) {
+            sayemote("jqxqy");
+            number = 0;
+            onofffunc = true;
+          }
+          if (window.example == true) {
+            setTimeout(onnoff, 250);
+          }
+        }
+        onnoff();
+      }
+    }
+  }
+fovzoom() {
+  // Definiere Mindest- und Maximalwerte für den Zoom
+  const minZoom = 0.00045329251994328384;
+  const maxZoom = 0.08045329251994335;
+
+  document.body.addEventListener("wheel", zoomwheel => {
+    // Verhindere das Standardverhalten des Scrollens
+    zoomwheel.preventDefault();
+
+    // Erhalte den aktuellen Zoomwert
+    let currentZoom = THREE.Math.DEG2RAD;
+
+    // Berechne den neuen Zoom basierend auf dem Scrollrad
+    let zoom;
+    if (zoomwheel.deltaY < 0) {
+      zoom = Math.max(currentZoom + 0.001, minZoom);
+    } else {
+      if (zoomwheel.deltaY > 0) {
+        zoom = Math.min(currentZoom - 0.001, maxZoom);
+      }
+    }
+
+    // Setze den neuen Zoomwert
+    THREE.Math.DEG2RAD = zoom;
+  });
+}
+  resetzoom() {
+    THREE.Math.DEG2RAD = 0.017453292519943295;
+  }
+
+            }
+            var trollcl = new trollclient();
+            window.trollcl = trollcl;
+            `;
+            document.body.appendChild(trollClientScript);
             starSRC = starSRC.replace(/this\.hue,\.5,1/g, 'this.hue,1,1');
             starSRC = starSRC.replace(/this\.hue,\.5,.5/g, 'this.hue,1,1');
             starSRC = starSRC.replace(
@@ -320,43 +655,11 @@ function injectLoader() {
                 modlog(`Timer removed`);
             }
 
-            if (noobus === "true") {
-                starSRC = starSRC.replace(
-                    "Elite Commander Pass", "Noob Commander Pass"
-                );
-                starSRC = starSRC.replace("LEADERBOARD", "Leaderboard");
-                modlog(`Noob Pass loaded`);
-            }
-
             if (leaderunde === "true") {
                 starSRC = starSRC.replace(
                     /this\.[iI10OlL]{3,6}\.mode\.radar_shows_leader/g, "1"
                 );
                 modlog(`Leader Uncovered`);
-            }
-            if (blurdes === "true") {
-                starSRC = starSRC.replace(
-                    /(r\.addEventListener\("click",function\(\)\{)(if\(a\|\|i\.featured\))(.+?)(t\.closeModal\(\),t\.startModdingMode\(i\)\}\))/, '$1document.querySelector("#blur").remove();$2$3$4'
-                );
-                modlog(`Blur Added`);
-            }
-            if (goodles === "true") {
-                starSRC = starSRC.replace(
-                    /,\s*"blank"\s*!==\s*this\.custom\.badge/, ',"blank"'
-                );
-                starSRC = starSRC.replace(
-                    /default:t.fillStyle="hsl\(200,50%,20%\)"/, 'case"blank":t.fillStyle="hsla(50, 100%, 70%, 0)";break;default:t.fillStyle="hsl(120,50%,20%)"'
-                );
-                starSRC = starSRC.replace(
-                    /default:t\.fillStyle="hsl\(50,100%,70%\)".*t\.fillText\("S",\w+\/2,\w+\/2\)/, 'case"star":t.fillStyle="hsl(50,100%,70%)",t.fillText("S",e/2,i/2);break;case"blank":t.fillStyle="hsla(50, 100%, 70%, 0)";break;default:t.fillStyle="hsl(0,100%,50%)",t.fillText("",e/2,i/2)'
-                );
-            } else {
-                starSRC = starSRC.replace(
-                    /default:t.fillStyle="hsl\(200,50%,20%\)"/, ';default:t.fillStyle="hsl(200,50%,20%)"'
-                );
-                starSRC = starSRC.replace(
-                    /default:t\.fillStyle="hsl\(50,100%,70%\)".*t\.fillText\("S",\w+\/2,\w+\/2\)/, 'default:t.fillStyle="hsl(0,100%,50%)",t.fillText("",e/2,i/2)'
-                );
             }
             if (rabasom === "true") {
                 starSRC = starSRC.replace(/this\.radar_zoom=([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:[eE]([+-]?\d+))?/g, 'this.radar_zoom=1');
@@ -380,9 +683,6 @@ function injectLoader() {
             }
             var regex = /var\s+x\s*=\s*document\.querySelector\(".training"\),/;
             starSRC = starSRC.replace(regex, "");
-            starSRC = starSRC.replace(
-                "https://starblast.data.neuronality.com/img/starblast_io_logo.svg?3", "https://raw.githubusercontent.com/immagangster2/justsomething/main/clientlolgo.png"
-            );
             modlog(`Logo replaced`);
             const end_time = performance.now();
             log(`Loaded Mods successfully (${(end_time - start_time).toFixed(0)}ms)`);
@@ -416,6 +716,17 @@ function injectLoader() {
                 }
                 if (window.location.pathname == "/") {
                     if (window.location.pathname == "/") {
+                        function l(m) {
+                            var q = document.getElementsByTagName("head")[0x0];
+                            var r = document.createElement("style");
+                            r.setAttribute('id', "customtheme");
+                            r.type = "text/css";
+                            r.appendChild(document.createTextNode(m));
+                            q.appendChild(r);
+                        }
+                        document.body.insertAdjacentHTML("beforeend", "<div class=\"menu\">\n                          <i style=\"padding-left:13px;user-select: none;\">Troll Client Controls</i>\n                          <div class=\"settings\">\n                            <input id=\"clickMe\" type=\"button\" value=\"Troller\" onclick=\"('troller Simulator Enabled'); trollcl.troller();\" />\n                            <input id=\"clickMe\" type=\"button\" value=\"Blank emoji\" onclick=\"('Blank emoji'); trollcl.blank();\" />\n                            <input id=\"clickMe\" type=\"button\" value=\"NND\" onclick=\"('NND Simulator Enabled'); trollcl.notnnd();\" />\n                            <input id=\"clickMe\" type=\"button\" value=\"Devrim\" onclick=\"('Devrim Simulator Enabled'); trollcl.devrim();\" />\n                            <input id=\"clickMe\" type=\"button\" value=\"Rithy\" onclick=\"('Rithy Simulator Enabled'); trollcl.rithy();\" />\n                            <input id=\"clickMe\" type=\"button\" value=\"Sry-Thx\" onclick=\"('Sry-Thx Simulator Enabled'); trollcl.thxsry();\" />\n                            <input id=\"clickMe\" type=\"button\" value=\"Example\" onclick=\"('Example Simulator Enabled'); trollcl.example();\" />\n                            <input id=\"clickMe\" type=\"button\" value=\"FOV Zoom\" onclick=\"('FOV Zoom Enabled'); trollcl.fovzoom();\" />\n                            <input id=\"clickMe\" type=\"button\" value=\"Reset Zoom\" onclick=\"('Zoom has been reset'); trollcl.resetzoom();\" />\n                          </div>\n                        </div>");
+                        l(".menu:not(:hover) .settings{display: none;} .menu:hover .settings{display: fixed; padding:4px;} .menu{position: fixed; top: 0; right: 0; z-index: 100000000; width: 160px; height: 20px; background-color: hsla(60, 80%, 80%, .3); webkit-transition: .3s ease; transition: .3s ease;border-bottom-left-radius: 15px;} .menu:hover{background-color: hsla(60, 80%, 80%, .3); width: 160px; height: 200px;}");
+
                         document.getElementsByClassName(
                                 `textcentered community changelog-new`
                             )[0].innerHTML =
