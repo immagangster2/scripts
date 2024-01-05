@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client CH
-// @version      2.0.0
+// @version      2.0.1
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // @downloadURL  https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "2.0.0";
+const CURRENT_RUNNING_VERSION = "2.0.1";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -136,15 +136,15 @@ function injectLoader() {
             //Materials
             const substrings = [
                'case"carbon":this.buildCarbonMaterial();break;'
-               , "t.prototype.buildCarbonMaterial=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specular:6316128,shininess:5,bumpScale:.1,color:1052688,emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OIO10})},"
+                , "t.prototype.buildCarbonMaterial=function(){return this.material=new THREE.MeshPhongMaterial({map:AlloyMaterialMap,bumpMap:AlloyMaterialMap,specular:6316128,shininess:5,bumpScale:.1,color:1052688,emissive:AlloyEmissiveMaterial.hsvToRgbHex(this.hue,.5,1),emissiveMap:CarbonEmissiveMap})},"
                , 'case"titanium":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"#444"),s.addColorStop(.5,"#AAA"),s.addColorStop(.5,"#444"),s.addColorStop(1,"#111");break;'
                , 'carbon:"Carbon"'
             , ];
             const malaor = localStorage.getItem("malaor");
             const additions = [
                'case"fx27":this.buildfX27Material();break;'
-               , `t.prototype.buildfX27Material=function(){return this.material=new THREE.MeshPhongMaterial({map:I1l0O,bumpMap:I1l0O,specularMap:I1l0O,specular:1052688,shininess:10,bumpScale:.1,color:"${malaor}",emissive:l11OO.hsvToRgbHex(this.hue,.5,1),emissiveMap:OIO10})},`
-               , 'case"fx27":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"' + darkenColor(malaor, 50) + '"),s.addColorStop(.5,"' + malaor + '"),s.addColorStop(.5,"' + darkenColor(malaor, 30) + '"),s.addColorStop(1,"' + darkenColor(malaor, 10) + '");break;'
+               , `t.prototype.buildfX27Material=function(){return this.material=new THREE.MeshPhongMaterial({map:AlloyMaterialMap,bumpMap:AlloyMaterialMap,specularMap:AlloyMaterialMap,specular:1052688,shininess:10,bumpScale:.1,color:"${malaor}",emissive:AlloyEmissiveMaterial.hsvToRgbHex(this.hue,.5,1),emissiveMap:CarbonEmissiveMap})},`
+               , 'case"fx27":s=t.createLinearGradient(0,0,0,i),s.addColorStop(0,"' + darkenColor(malaor, 70) + '"),s.addColorStop(.5,"' + malaor + '"),s.addColorStop(.5,"' + darkenColor(malaor, 60) + '"),s.addColorStop(1,"' + darkenColor(malaor, 10) + '");break;'
                , ',fx27:"Custom Material"'
             , ];
             for (let i = 0; i < substrings.length; i++) {
@@ -847,7 +847,6 @@ fovzoom() {
                             var br1 = document.createElement("br");
                             br1.style.userSelect = "none";
                             br1.style.pointerEvents = "none";
-
                             //Radar Zoom
                             var babardo = document.createElement("input");
                             babardo.type = "checkbox";
