@@ -566,29 +566,18 @@ function injectLoader() {
     }
   }
 fovzoom() {
-  // Definiere Mindest- und Maximalwerte für den Zoom
-  const minZoom = 0.00045329251994328384;
-  const maxZoom = 0.08045329251994335;
-
+  const zoomLimits = { min: 0.00045329251994328384, max: 0.06045329251994335 };
   document.body.addEventListener("wheel", zoomwheel => {
-    // Verhindere das Standardverhalten des Scrollens
-    zoomwheel.preventDefault();
-
-    // Erhalte den aktuellen Zoomwert
-    let currentZoom = THREE.Math.DEG2RAD;
-
-    // Berechne den neuen Zoom basierend auf dem Scrollrad
     let zoom;
-    if (zoomwheel.deltaY < 0) {
-      zoom = Math.max(currentZoom + 0.001, minZoom);
-    } else {
-      if (zoomwheel.deltaY > 0) {
-        zoom = Math.min(currentZoom - 0.001, maxZoom);
-      }
+    if (zoomwheel.deltaY < 1) {
+      zoom = -0.001;
+    } else if (zoomwheel.deltaY > 1) {
+      zoom = 0.001;
     }
 
-    // Setze den neuen Zoomwert
-    THREE.Math.DEG2RAD = zoom;
+    THREE.Math.DEG2RAD = Math.max(zoomLimits.min, Math.min(THREE.Math.DEG2RAD + zoom, zoomLimits.max));
+
+    zoomwheel.stopPropagation();
   });
 }
   resetzoom() {
