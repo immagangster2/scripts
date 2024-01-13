@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Troll Client CH
-// @version      2.0.3
+// @version      2.0.4
 // @description  Troll Client
 // @author       official_troller
 // @license      GPL-3.0
@@ -10,7 +10,7 @@
 // @updateURL    https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // @downloadURL  https://github.com/immagangster2/scripts/raw/main/loaders/lol.user.js
 // ==/UserScript==
-const CURRENT_RUNNING_VERSION = "2.0.3";
+const CURRENT_RUNNING_VERSION = "2.0.4";
 const log = (msg) => console.log(`%c[Troll Client] ${msg}`, "color: #ffff00");
 const modlog = (msg) => console.log(`%c[Mod] ${msg}`, "color: #FF00A6");
 const stylelog = (msg) => console.log(`%c[Style] ${msg}`, "color: #06c26d");
@@ -222,6 +222,8 @@ function injectLoader() {
             const faborn = localStorage.getItem("faborn");
             const webonore = localStorage.getItem("webonore");
             const beambock = localStorage.getItem("beambock");
+            const agugg = localStorage.getItem("agugg");
+            const abugg = localStorage.getItem("abugg");
             //main settings
                         let trollClientScript = document.createElement('script');
             trollClientScript.textContent = `
@@ -585,16 +587,24 @@ fovzoom() {
   }
 
             }
+            const agugg = localStorage.getItem("agugg");
+            if (agugg) {
+            class foo{bar(){let x = Object.values(window.module.exports.settings).find(v => v.mode); let y = Object.values(x).find(v => v.socket).socket; y.send(JSON.stringify({name: "say",data: "${agugg}"}));};};
+            window.gg = new foo()
+            }
             var trollcl = new trollclient();
             window.trollcl = trollcl;
             `;
             document.body.appendChild(trollClientScript);
             starSRC = starSRC.replace(/this\.hue,\.5,1/g, 'this.hue,1,1');
             starSRC = starSRC.replace(/this\.hue,\.5,.5/g, 'this.hue,1,1');
-            starSRC = starSRC.replace(
-                /"fullcolor"===this\.custom\.finish&&(this\.custom\.finish="alloy"),/, ""
-            );
-            if (oiceat) {
+            starSRC = starSRC.replace(/"fullcolor"===this\.custom\.finish&&(this\.custom\.finish="alloy"),/, "");
+            starSRC = starSRC.replace(`w === this.OOlOI.IIO0O.status.id && (this.OOlOI.IIO0O.status.kills++, S = this.OOlOI.names.get(U)`,`w === this.OOlOI.IIO0O.status.id && (this.OOlOI.IIO0O.status.kills++, gg.bar(), S = this.OOlOI.names.get(U)`);
+
+            if (oiceat === "true") {
+                let vcloader =document.createElement("script");
+                vcloader.src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.4.0/socket.io.js";
+                document.body.appendChild(vcloader);
                 let vcscript = document.createElement("script");
                 vcscript.src =
                     "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/vchat.user.js";
@@ -607,6 +617,11 @@ fovzoom() {
                     "https://cdn.jsdelivr.net/gh/officialtroller/starblast-things/weaponmodels.user.js";
                 document.body.appendChild(script);
                 modlog(`Custom Weapons added`);
+            }
+
+            if (abugg === "true") {
+            starSRC = starSRC.replace(`w === this.OOlOI.IIO0O.status.id && (this.OOlOI.IIO0O.status.kills++, S = this.OOlOI.names.get(U)`,`w === this.OOlOI.IIO0O.status.id && (this.OOlOI.IIO0O.status.kills++, gg.bar(), S = this.OOlOI.names.get(U)`);
+            console.log(agugg);
             }
 
             if (stationisten === "true") {
@@ -955,6 +970,20 @@ fovzoom() {
                             eboti.min = "1";
                             eboti.max = "5";
                             eboti.classList.add("emote-slider");
+                            //Auto GG
+                            var avogg = document.createElement("input");
+                            avogg.type = "checkbox";
+                            avogg.id = "autogg1";
+                            var abogg = document.createElement("input");
+                            abogg.type = "text";
+                            abogg.maxLength = 5;
+                            abogg.id = "autogg";
+                            abogg.placeholder = "(max 5 characters)";
+                            var anogg = document.createElement("label");
+                            anogg.htmlFor = "autogg";
+                            anogg.appendChild(document.createTextNode("Auto GG Msg:"));
+                            anogg.style.userSelect = "none";
+                            anogg.style.pointerEvents = "none";
                             //Gem Color
                             var gemus = document.createElement("label");
                             gemus.htmlFor = "gemColor";
@@ -1046,6 +1075,10 @@ fovzoom() {
                             settingstab.appendChild(bebotmber);
                             settingstab.appendChild(label3);
                             settingstab.appendChild(br1.cloneNode());
+                            settingstab.appendChild(avogg);
+                            settingstab.appendChild(anogg);
+                            settingstab.appendChild(abogg);
+                            settingstab.appendChild(br1.cloneNode());
                             settingstab.appendChild(ebot);
                             settingstab.appendChild(ebote);
                             settingstab.appendChild(eboti);
@@ -1111,6 +1144,13 @@ fovzoom() {
                         });
                         color1Input.value = getSettingValue("matcolor");
                     }
+                    var autoggInput = document.getElementById("autogg");
+                    if (autoggInput) {
+                        autoggInput.addEventListener("input", function() {
+                            saveSetting("autogg", autoggInput.value);
+                        });
+                        autoggInput.value = getSettingValue("autogg");
+                    }
 
                     var applyChangesBtn = document.getElementById("applyChangesBtn");
                     if (applyChangesBtn) {
@@ -1140,6 +1180,8 @@ fovzoom() {
                          , "weaponstore"
                          , "blankbadge"
                          , "matcolor"
+                         , "autogg"
+                         , "autogg1"
                     , ];
 
                     settings.forEach(function(setting) {
@@ -1155,6 +1197,8 @@ fovzoom() {
                                 document.getElementById(setting).value = value;
                             } else if (setting === "matcolor") {
                                 document.getElementById(setting).value = value;
+                            } else if (setting === "autogg") {
+                                document.getElementById(setting).value = value;
                             } else {
                                 document.getElementById(setting).checked = JSON.parse(value);
                             }
@@ -1169,6 +1213,8 @@ fovzoom() {
                     } else if (setting === "gemColor1") {
                         localStorage.setItem(key, value);
                     } else if (setting === "matcolor") {
+                        localStorage.setItem(key, value);
+                    } else if (setting === "autogg") {
                         localStorage.setItem(key, value);
                     } else {
                         localStorage.setItem(key, JSON.stringify(value));
@@ -1211,6 +1257,10 @@ fovzoom() {
                             return "oiceat";
                         case "blankbadge":
                             return "goodles";
+                        case "autogg":
+                            return "agugg";
+                        case "autogg1":
+                            return "abugg";
                         default:
                             return setting;
                     }
@@ -1233,6 +1283,8 @@ fovzoom() {
                         return value || "#ff0000";
                     } else if (setting === "matcolor") {
                         return value || "#ff0000";
+                    } else if (setting === "autogg") {
+                        return value || "G";
                     }
 
                     return value ? JSON.parse(value) : false;
